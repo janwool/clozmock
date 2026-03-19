@@ -1,0 +1,38 @@
+{
+  "name": "mockdown",
+  "version": "1.0.0",
+  "description": "3D Mockup Online Design SaaS Platform",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run validate && npm run build:vue && npm run generate",
+    "build:vue": "vite build",
+    "generate": "node scripts/generate-pages.js",
+    "validate": "node scripts/validate-models.js",
+    "add-model": "node scripts/add-model.js",
+    "migrate-models": "node scripts/migrate-models.js",
+    "seed-admin": "node scripts/seed-admin.js",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.5",
+    "vue-router": "^4.4",
+    "pinia": "^2.2",
+    "vue-i18n": "^10",
+    "three": "^0.170",
+    "mongodb": "^6",
+    "bcryptjs": "^2.4",
+    "jsonwebtoken": "^9",
+    "cookie": "^0.6",
+    "@lemonsqueezy/lemonsqueezy.js": "^3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5",
+    "vite": "^6",
+    "tailwindcss": "^4",
+    "@tailwindcss/vite": "^4",
+    "ejs": "^3.1",
+    "typescript": "^5.6",
+    "vue-tsc": "^2"
+  }
+}
