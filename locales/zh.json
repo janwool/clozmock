@@ -1,0 +1,100 @@
+{
+  "site": {
+    "name": "3D Mockup",
+    "tagline": "在线创建精美 3D 样机",
+    "description": "免费在线 3D 样机生成器。上传你的设计，自定义颜色和背景，下载高质量 3D 产品样机图。"
+  },
+  "nav": {
+    "home": "首页",
+    "mockups": "样机模型",
+    "pricing": "价格",
+    "login": "登录",
+    "signup": "注册",
+    "dashboard": "控制台"
+  },
+  "hero": {
+    "title": "几秒内创建精美 3D 样机",
+    "subtitle": "上传你的设计，自定义 3D 模型，下载专业产品样机 — 无需设计技能。",
+    "cta": "开始设计",
+    "cta_secondary": "浏览样机"
+  },
+  "categories": {
+    "apparel": "服装",
+    "mugs": "杯子",
+    "boxes": "盒子",
+    "devices": "电子设备",
+    "cans": "易拉罐",
+    "print": "印刷品",
+    "bottles": "瓶子",
+    "pouchs": "袋子",
+    "tubes": "管子"
+  },
+  "subcategories": {
+    "t-shirt": "T恤",
+    "hoodie": "卫衣",
+    "polo": "Polo衫",
+    "mug": "马克杯",
+    "box": "包装盒",
+    "can": "易拉罐",
+    "iphone": "iPhone",
+    "business-card": "名片",
+    "book": "书籍",
+    "bottle": "瓶子",
+    "pouch": "袋子",
+    "tube": "管子"
+  },
+  "model": {
+    "startDesign": "开始设计",
+    "free": "免费",
+    "pro": "专业版",
+    "relatedMockups": "相关样机",
+    "features": "功能特性",
+    "animationPreview": "动画预览"
+  },
+  "pricing": {
+    "title": "简单透明的价格",
+    "subtitle": "选择适合你的方案",
+    "free": "免费版",
+    "pro": "专业版",
+    "monthly": "月付",
+    "yearly": "年付",
+    "perMonth": "/月",
+    "perYear": "/年",
+    "subscribe": "订阅",
+    "currentPlan": "当前方案",
+    "singlePurchase": "或单独购买样机"
+  },
+  "footer": {
+    "about": "关于我们",
+    "contact": "联系方式",
+    "terms": "服务条款",
+    "privacy": "隐私政策",
+    "copyright": "© 2026 3D Mockup. 保留所有权利。"
+  },
+  "auth": {
+    "welcomeBack": "欢迎回来",
+    "createAccount": "创建账户",
+    "continueWithGoogle": "使用 Google 登录",
+    "or": "或",
+    "name": "姓名",
+    "namePlaceholder": "你的姓名",
+    "email": "邮箱",
+    "emailPlaceholder": "you@example.com",
+    "password": "密码",
+    "signIn": "登录",
+    "signUp": "注册",
+    "noAccount": "还没有账户？",
+    "hasAccount": "已有账户？",
+    "authFailed": "认证失败",
+    "googleFailed": "Google 登录失败",
+    "loading": "正在加载，请重试"
+  },
+  "seo": {
+    "homeTitle": "免费在线 3D 样机生成器 | 创建专业产品样机图",
+    "homeDescription": "免费在线生成精美 3D 产品样机。自定义 T恤、马克杯、包装盒、手机壳等产品的 3D 样机图。",
+    "categoryTitleTemplate": "免费 3D {category}样机 | 在线{category}样机生成器",
+    "categoryDescriptionTemplate": "浏览和自定义免费 3D {category}样机。上传你的设计，几秒内创建专业产品样机。",
+    "pricingTitle": "价格方案 | 3D Mockup - 专业版套餐与单次购买",
+    "pricingDescription": "选择免费或专业版方案。获取所有 3D 样机的无限使用权或单独购买模板。"
+  }
+}

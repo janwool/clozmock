@@ -1,0 +1,75 @@
+<% var langPrefix = lang === 'en' ? '' : '/' + lang; %>
+
+<section class="hero">
+  <div class="container">
+    <h1><%= t.hero.title %></h1>
+    <p class="hero-subtitle"><%= t.hero.subtitle %></p>
+    <div class="hero-cta">
+      <a href="<%= langPrefix %>/mockups/" class="btn btn-primary btn-lg"><%= t.hero.cta_secondary %></a>
+    </div>
+  </div>
+</section>
+
+<section class="categories-section">
+  <div class="container">
+    <h2>Browse by Category</h2>
+    <div class="category-grid">
+      <% Object.keys(categories).forEach(function(cat) { %>
+      <a href="<%= langPrefix %>/mockups/<%= cat %>/" class="category-card">
+        <div class="category-preview">
+          <% if (categories[cat].preview) { %>
+          <img src="<%= categories[cat].preview %>" alt="<%= t.categories[cat] || cat %>" loading="lazy" />
+          <% } %>
+        </div>
+        <h3><%= t.categories[cat] || cat %></h3>
+        <span class="category-count"><%= categories[cat].count %> mockups</span>
+      </a>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<section class="featured-section">
+  <div class="container">
+    <h2>Popular Mockups</h2>
+    <div class="model-grid">
+      <% featuredModels.forEach(function(model) { %>
+      <a href="<%= langPrefix %>/mockups/<%= model.id %>.html" class="model-card">
+        <div class="model-preview">
+          <img src="<%= model.object.thumbnail %>" alt="<%= model.meta.title %>" loading="lazy" width="400" height="300" />
+          <% if (model.pro) { %>
+          <span class="badge badge-pro"><%= t.model.pro %></span>
+          <% } else { %>
+          <span class="badge badge-free"><%= t.model.free %></span>
+          <% } %>
+        </div>
+        <h3><%= model.meta.title %></h3>
+      </a>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<section class="features-section">
+  <div class="container">
+    <h2>Why Choose 3D Mockup</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>Real-time 3D Preview</h3>
+        <p>See your design come to life in stunning 3D with real-time rendering and interactive controls.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Easy Customization</h3>
+        <p>Change colors, upload designs, and adjust backgrounds with intuitive, streamlined tools.</p>
+      </div>
+      <div class="feature-card">
+        <h3>High Quality Export</h3>
+        <p>Download publication-ready mockup images in high resolution, with or without background.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Animation Effects</h3>
+        <p>Choose from 11+ animation effects to showcase your design with dynamic motion.</p>
+      </div>
+    </div>
+  </div>
+</section>

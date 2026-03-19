@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>">
+<head>
+  <%- include('../partials/head', { title, description, canonical, ogImage, hreflangLinks, structuredData }) %>
+</head>
+<body>
+  <%- include('../partials/header', { t, lang, currentPath }) %>
+
+  <main>
+    <%- body %>
+  </main>
+
+  <%- include('../partials/footer', { t, lang }) %>
+  <%- include('../partials/login-modal', { t }) %>
+  <script src="/assets/auth-state.js" defer></script>
+</body>
+</html>

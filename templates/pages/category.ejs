@@ -1,0 +1,68 @@
+<% var langPrefix = lang === 'en' ? '' : '/' + lang; %>
+<% var categoryName = t.categories[category] || category; %>
+
+<div class="container">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="<%= langPrefix %>/"><span itemprop="name"><%= t.nav.home %></span></a>
+        <meta itemprop="position" content="1" />
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="<%= langPrefix %>/mockups/"><span itemprop="name"><%= t.nav.mockups %></span></a>
+        <meta itemprop="position" content="2" />
+      </li>
+      <% if (category !== 'all') { %>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span itemprop="name"><%= categoryName %></span>
+        <meta itemprop="position" content="3" />
+      </li>
+      <% } %>
+    </ol>
+  </nav>
+</div>
+
+<section class="category-hero">
+  <div class="container">
+    <h1>3D <%= categoryName %> Mockups</h1>
+    <p><%= t.seo.categoryDescriptionTemplate.replace(/\{category\}/g, categoryName) %></p>
+  </div>
+</section>
+
+<% if (subcategories && subcategories.length > 1) { %>
+<section class="subcategory-filter">
+  <div class="container">
+    <a href="<%= langPrefix %>/mockups/<%= category %>/" class="filter-tag <%= !activeSubcategory ? 'active' : '' %>">All</a>
+    <% subcategories.forEach(function(sub) { %>
+    <a href="<%= langPrefix %>/mockups/<%= category %>/<%= sub %>/" class="filter-tag <%= activeSubcategory === sub ? 'active' : '' %>">
+      <%= t.subcategories[sub] || sub %>
+    </a>
+    <% }) %>
+  </div>
+</section>
+<% } %>
+
+<section class="model-list">
+  <div class="container">
+    <div class="model-grid">
+      <% models.forEach(function(model) { %>
+      <a href="<%= langPrefix %>/mockups/<%= model.id %>.html" class="model-card">
+        <div class="model-preview">
+          <img src="<%= model.object.thumbnail %>" alt="<%= model.meta.title %>" loading="lazy" width="400" height="300" />
+          <% if (model.pro) { %>
+          <span class="badge badge-pro"><%= t.model.pro %></span>
+          <% } else { %>
+          <span class="badge badge-free"><%= t.model.free %></span>
+          <% } %>
+        </div>
+        <h3><%= model.meta.title %></h3>
+        <div class="model-tags">
+          <% (model.meta.subcategories || []).forEach(function(sub) { %>
+          <span class="tag"><%= t.subcategories[sub] || sub %></span>
+          <% }) %>
+        </div>
+      </a>
+      <% }) %>
+    </div>
+  </div>
+</section>

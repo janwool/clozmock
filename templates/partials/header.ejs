@@ -1,0 +1,22 @@
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="<%= lang === 'en' ? '/' : '/' + lang + '/' %>" class="logo">
+      <span class="logo-text"><%= t.site.name %></span>
+    </a>
+
+    <nav class="main-nav">
+      <a href="<%= lang === 'en' ? '/mockups/' : '/' + lang + '/mockups/' %>"><%= t.nav.mockups %></a>
+      <a href="<%= lang === 'en' ? '/pricing.html' : '/' + lang + '/pricing.html' %>"><%= t.nav.pricing %></a>
+    </nav>
+
+    <div class="header-actions">
+      <div class="lang-switcher">
+        <a href="/" class="<%= lang === 'en' ? 'active' : '' %>">EN</a>
+        <a href="/zh/" class="<%= lang === 'zh' ? 'active' : '' %>">CN</a>
+      </div>
+
+      <a href="#" class="btn btn-login" onclick="openLoginModal('login'); return false;"><%= t.nav.login %></a>
+      <a href="#" class="btn btn-signup" onclick="openLoginModal('signup'); return false;"><%= t.nav.signup %></a>
+    </div>
+  </div>
+</header>

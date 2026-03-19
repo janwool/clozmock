@@ -1,0 +1,46 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><%= title %></title>
+<meta name="description" content="<%= description %>">
+
+<!-- Canonical -->
+<link rel="canonical" href="<%= canonical %>">
+
+<!-- Hreflang -->
+<% hreflangLinks.forEach(function(link) { %>
+<link rel="alternate" hreflang="<%= link.lang %>" href="<%= link.url %>">
+<% }) %>
+
+<!-- Open Graph -->
+<meta property="og:title" content="<%= title %>">
+<meta property="og:description" content="<%= description %>">
+<meta property="og:type" content="website">
+<meta property="og:url" content="<%= canonical %>">
+<% if (ogImage) { %>
+<meta property="og:image" content="<%= ogImage %>">
+<% } %>
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="<%= title %>">
+<meta name="twitter:description" content="<%= description %>">
+
+<!-- Structured Data -->
+<% if (structuredData) { %>
+<% if (Array.isArray(structuredData)) { %>
+<% structuredData.forEach(function(sd) { %>
+<script type="application/ld+json"><%- JSON.stringify(sd) %></script>
+<% }) %>
+<% } else { %>
+<script type="application/ld+json"><%- JSON.stringify(structuredData) %></script>
+<% } %>
+<% } %>
+
+<!-- Styles -->
+<link rel="stylesheet" href="/assets/styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">

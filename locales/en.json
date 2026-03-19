@@ -1,0 +1,100 @@
+{
+  "site": {
+    "name": "3D Mockup",
+    "tagline": "Create Stunning 3D Mockups Online",
+    "description": "Free online 3D mockup generator. Upload your design, customize colors and backgrounds, and download high-quality 3D product mockups."
+  },
+  "nav": {
+    "home": "Home",
+    "mockups": "Mockups",
+    "pricing": "Pricing",
+    "login": "Log In",
+    "signup": "Sign Up",
+    "dashboard": "Dashboard"
+  },
+  "hero": {
+    "title": "Create Stunning 3D Mockups in Seconds",
+    "subtitle": "Upload your design, customize your 3D model, and download professional product mockups — no design skills needed.",
+    "cta": "Start Designing",
+    "cta_secondary": "Browse Mockups"
+  },
+  "categories": {
+    "apparel": "Apparel",
+    "mugs": "Mugs",
+    "boxes": "Boxes",
+    "devices": "Devices",
+    "cans": "Cans",
+    "print": "Print",
+    "bottles": "Bottles",
+    "pouchs": "Pouches",
+    "tubes": "Tubes"
+  },
+  "subcategories": {
+    "t-shirt": "T-Shirt",
+    "hoodie": "Hoodie",
+    "polo": "Polo T-Shirt",
+    "mug": "Mug",
+    "box": "Box",
+    "can": "Can",
+    "iphone": "iPhone",
+    "business-card": "Business Card",
+    "book": "Book",
+    "bottle": "Bottle",
+    "pouch": "Pouch",
+    "tube": "Tube"
+  },
+  "model": {
+    "startDesign": "Start Designing",
+    "free": "Free",
+    "pro": "Pro",
+    "relatedMockups": "Related Mockups",
+    "features": "Features",
+    "animationPreview": "Animation Preview"
+  },
+  "pricing": {
+    "title": "Simple, Transparent Pricing",
+    "subtitle": "Choose the plan that works for you",
+    "free": "Free",
+    "pro": "Pro",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "perMonth": "/month",
+    "perYear": "/year",
+    "subscribe": "Subscribe",
+    "currentPlan": "Current Plan",
+    "singlePurchase": "Or buy individual mockups"
+  },
+  "footer": {
+    "about": "About",
+    "contact": "Contact",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "copyright": "© 2026 3D Mockup. All rights reserved."
+  },
+  "auth": {
+    "welcomeBack": "Welcome Back",
+    "createAccount": "Create Account",
+    "continueWithGoogle": "Continue with Google",
+    "or": "or",
+    "name": "Name",
+    "namePlaceholder": "Your name",
+    "email": "Email",
+    "emailPlaceholder": "you@example.com",
+    "password": "Password",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "authFailed": "Authentication failed",
+    "googleFailed": "Google sign-in failed",
+    "loading": "Loading, please try again"
+  },
+  "seo": {
+    "homeTitle": "Free Online 3D Mockup Generator | Create Professional Product Mockups",
+    "homeDescription": "Generate stunning 3D product mockups online for free. Customize t-shirts, mugs, boxes, phone cases and more with our easy-to-use 3D mockup generator.",
+    "categoryTitleTemplate": "Free 3D {category} Mockups | Online {category} Mockup Generator",
+    "categoryDescriptionTemplate": "Browse and customize free 3D {category} mockups online. Upload your design and create professional product mockups in seconds.",
+    "pricingTitle": "Pricing | 3D Mockup - Pro Plans & Single Purchases",
+    "pricingDescription": "Choose from free and pro plans. Get unlimited access to all 3D mockups or purchase individual templates."
+  }
+}

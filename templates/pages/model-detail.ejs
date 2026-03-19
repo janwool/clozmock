@@ -1,0 +1,250 @@
+<% var langPrefix = lang === 'en' ? '' : '/' + lang; %>
+<% var modelTitle = modelTranslation ? modelTranslation.title : model.meta.title; %>
+<% var modelDescription = modelTranslation ? modelTranslation.description : 'Customize this ' + model.meta.category + ' mockup with your design. Upload, adjust colors and background, and export high-quality 3D product images.'; %>
+<% var categoryName = t.categories[model.meta.category] || model.meta.category; %>
+<%
+  var animationKeys = ['BounceDown','SpinCycle','BeatSpin','BoingPop','StageEntrance','AdvancedLeftEntry','Details','EdgeEnter','Elevate','Shockwave','StageMaster'];
+  var hasAnimations = animationKeys.some(function(k) { return !!model.object[k]; });
+%>
+
+<div class="container">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="<%= langPrefix %>/"><span itemprop="name"><%= t.nav.home %></span></a>
+        <meta itemprop="position" content="1" />
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="<%= langPrefix %>/mockups/"><span itemprop="name"><%= t.nav.mockups %></span></a>
+        <meta itemprop="position" content="2" />
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="<%= langPrefix %>/mockups/<%= model.meta.category %>/">
+          <span itemprop="name"><%= categoryName %></span>
+        </a>
+        <meta itemprop="position" content="3" />
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span itemprop="name"><%= modelTitle %></span>
+        <meta itemprop="position" content="4" />
+      </li>
+    </ol>
+  </nav>
+</div>
+
+<article class="model-detail">
+  <div class="container">
+    <!-- Title & Description -->
+    <div class="model-header">
+      <h1><%= modelTitle %></h1>
+      <p class="model-description"><%= modelDescription %></p>
+    </div>
+
+    <!-- 3D Viewer + 2D Editor -->
+    <div class="model-editor-grid">
+      <!-- 3D Viewer Panel -->
+      <div class="viewer-panel">
+        <div id="viewer-loading" class="viewer-loading">
+          <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+          <span>Loading 3D model...</span>
+        </div>
+        <canvas id="three-canvas"></canvas>
+      </div>
+
+      <!-- 2D Fabric.js Editor Panel -->
+      <div class="editor-panel">
+        <div class="editor-toolbar">
+          <button type="button" id="toolbar-upload" class="toolbar-btn" title="Upload image">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 10V2m0 0L5 5m3-3 3 3M2 10v2a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-2"/></svg>
+            Upload
+          </button>
+          <input type="file" id="toolbar-upload-input" accept="image/*" style="display:none" />
+          <button type="button" id="toolbar-text" class="toolbar-btn" title="Add text">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h10M8 3v10M5 13h6"/></svg>
+            Text
+          </button>
+          <input type="color" id="toolbar-color" class="toolbar-color" value="#000000" title="Color" />
+          <button type="button" id="toolbar-delete" class="toolbar-btn toolbar-btn-danger" title="Delete selected">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12M5 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1m2 0v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h10Z"/></svg>
+            Delete
+          </button>
+        </div>
+        <div class="editor-canvas-wrapper">
+          <canvas id="fabric-canvas"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature Buttons -->
+    <div class="detail-feature-actions">
+      <button type="button" id="btn-download-md" class="detail-feature-btn">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8m0 0-3-3m3 3 3-3M2 12v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-1"/></svg>
+        Download MD
+      </button>
+      <button type="button" id="btn-download-design" class="detail-feature-btn">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8m0 0-3-3m3 3 3-3M2 12v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-1"/></svg>
+        Download Design
+      </button>
+      <button type="button" id="btn-ai-tryon" class="detail-feature-btn detail-feature-btn-ai">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1a3 3 0 0 0-3 3v1a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3ZM3 14v-1a5 5 0 0 1 10 0v1"/></svg>
+        AI Try-on
+      </button>
+    </div>
+
+    <!-- Model Info (full width below) -->
+    <div class="model-info-section">
+      <div class="model-info-area">
+        <div class="model-meta">
+          <span class="model-category"><%= categoryName %></span>
+          <% (model.meta.subcategories || []).forEach(function(sub) { %>
+          <span class="tag"><%= t.subcategories[sub] || sub %></span>
+          <% }) %>
+          <% if (model.pro) { %>
+          <span class="badge badge-pro" style="position:static;"><%= t.model.pro %></span>
+          <% } else { %>
+          <span class="badge badge-free" style="position:static;"><%= t.model.free %></span>
+          <% } %>
+        </div>
+
+        <div class="model-actions">
+          <a href="/editor/?model=<%= model.id %>" class="btn btn-primary btn-lg"><%= t.model.startDesign %></a>
+        </div>
+
+        <div class="model-features">
+          <h3><%= t.model.features %></h3>
+          <ul>
+            <li>Design area: <%= model.designs.map(function(d) { return d.width + 'x' + d.height + 'px'; }).join(', ') %></li>
+            <li>3D interactive preview</li>
+            <li><%= model.pro ? 'Pro model — subscription or single purchase required' : 'Free to use' %></li>
+            <% if (hasAnimations) { %>
+            <li>Animation effects available</li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <% if (modelTranslation && modelTranslation.longDescription) { %>
+    <section class="model-long-description">
+      <h2>About This Mockup</h2>
+      <p><%= modelTranslation.longDescription %></p>
+    </section>
+    <% } %>
+
+    <% if (modelTranslation && modelTranslation.faq && modelTranslation.faq.length > 0) { %>
+    <section class="model-faq" itemscope itemtype="https://schema.org/FAQPage">
+      <h2>Frequently Asked Questions</h2>
+      <% modelTranslation.faq.forEach(function(f) { %>
+      <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item">
+        <h3 itemprop="name"><%= f.question %></h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text"><%= f.answer %></p>
+        </div>
+      </div>
+      <% }) %>
+    </section>
+    <% } %>
+
+    <% if (relatedModels.length > 0) { %>
+    <section class="related-models">
+      <h2><%= t.model.relatedMockups %></h2>
+      <div class="model-grid">
+        <% relatedModels.forEach(function(rm) { %>
+        <a href="<%= langPrefix %>/mockups/<%= rm.id %>.html" class="model-card">
+          <div class="model-preview">
+            <img src="<%= rm.object.thumbnail %>" alt="<%= rm.meta.title %>" loading="lazy" width="400" height="300" />
+            <% if (rm.pro) { %>
+            <span class="badge badge-pro"><%= t.model.pro %></span>
+            <% } else { %>
+            <span class="badge badge-free"><%= t.model.free %></span>
+            <% } %>
+          </div>
+          <h3><%= rm.meta.title %></h3>
+        </a>
+        <% }) %>
+      </div>
+    </section>
+    <% } %>
+  </div>
+</article>
+
+<!-- AI Try-on Modal -->
+<div id="tryon-overlay" class="tryon-overlay" style="display:none">
+  <div class="tryon-modal">
+    <button type="button" id="tryon-close" class="tryon-close">&times;</button>
+    <div class="tryon-body">
+      <!-- Left: inputs -->
+      <div class="tryon-left">
+        <div class="tryon-section">
+          <h3>Clothing</h3>
+          <div id="tryon-clothing-preview" class="tryon-clothing-preview">
+            <p class="tryon-empty-text">3D screenshot will appear here</p>
+          </div>
+          <div class="tryon-clothing-actions">
+            <button type="button" id="tryon-capture" class="tryon-btn-secondary">Capture 3D View</button>
+            <button type="button" id="tryon-upload-btn" class="tryon-btn-secondary">Upload Image</button>
+            <input type="file" id="tryon-upload-input" accept="image/*" style="display:none" />
+          </div>
+        </div>
+        <div class="tryon-section tryon-model-section">
+          <h3>Select Model</h3>
+          <div class="tryon-model-grid">
+            <button type="button" class="tryon-model-card" data-model-id="female-1">
+              <div class="tryon-model-avatar" style="background:#b5ada4"><span>F</span></div>
+              <span class="tryon-model-label">Female A</span>
+            </button>
+            <button type="button" class="tryon-model-card" data-model-id="female-2">
+              <div class="tryon-model-avatar" style="background:#a09a93"><span>F</span></div>
+              <span class="tryon-model-label">Female B</span>
+            </button>
+            <button type="button" class="tryon-model-card" data-model-id="male-1">
+              <div class="tryon-model-avatar" style="background:#8a8580"><span>M</span></div>
+              <span class="tryon-model-label">Male A</span>
+            </button>
+            <button type="button" class="tryon-model-card" data-model-id="male-2">
+              <div class="tryon-model-avatar" style="background:#6b6560"><span>M</span></div>
+              <span class="tryon-model-label">Male B</span>
+            </button>
+            <button type="button" class="tryon-model-card" data-model-id="child-1">
+              <div class="tryon-model-avatar" style="background:#958c82"><span>C</span></div>
+              <span class="tryon-model-label">Child</span>
+            </button>
+            <button type="button" class="tryon-model-card" data-model-id="plus-1">
+              <div class="tryon-model-avatar" style="background:#7c7571"><span>P</span></div>
+              <span class="tryon-model-label">Plus Size</span>
+            </button>
+          </div>
+        </div>
+        <div class="tryon-section tryon-generate-section">
+          <button type="button" id="tryon-generate" class="tryon-btn-generate" disabled>Generate</button>
+        </div>
+      </div>
+      <!-- Right: result -->
+      <div class="tryon-right">
+        <h3>Result</h3>
+        <div id="tryon-result-area" class="tryon-result-area">
+          <p class="tryon-empty-text">Select a model and click Generate to see the AI try-on result</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="importmap">
+{ "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+}}
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+<script>
+window.__MODEL_DATA__ = <%- JSON.stringify({
+  id: model.id,
+  glbUrl: model.object.url,
+  camera: model.camera,
+  controls: model.controls,
+  designs: model.designs,
+  elements: model.object.elements || []
+}) %>;
+</script>
+<script type="module" src="/assets/detail-editor.js"></script>

@@ -1,0 +1,53 @@
+<% var langPrefix = lang === 'en' ? '' : '/' + lang; %>
+
+<section class="pricing-hero">
+  <div class="container">
+    <h1><%= t.pricing.title %></h1>
+    <p><%= t.pricing.subtitle %></p>
+  </div>
+</section>
+
+<section class="pricing-plans">
+  <div class="container">
+    <div class="pricing-grid">
+      <!-- Free Plan -->
+      <div class="pricing-card">
+        <h2><%= t.pricing.free %></h2>
+        <div class="pricing-price">$0</div>
+        <ul class="pricing-features">
+          <li>Access to free mockups</li>
+          <li>Basic export (with watermark)</li>
+          <li>3 downloads per day</li>
+          <li>Community support</li>
+        </ul>
+        <a href="/dashboard/" class="btn btn-outline btn-block">Get Started</a>
+      </div>
+
+      <!-- Pro Plan -->
+      <div class="pricing-card pricing-card-featured">
+        <h2><%= t.pricing.pro %></h2>
+        <div class="pricing-toggle">
+          <button class="toggle-btn active" data-period="monthly"><%= t.pricing.monthly %></button>
+          <button class="toggle-btn" data-period="yearly"><%= t.pricing.yearly %></button>
+        </div>
+        <div class="pricing-price" data-monthly="$9.99" data-yearly="$79.99">
+          $9.99<span><%= t.pricing.perMonth %></span>
+        </div>
+        <ul class="pricing-features">
+          <li>All mockups (Free + Pro)</li>
+          <li>High-resolution export (no watermark)</li>
+          <li>Unlimited downloads</li>
+          <li>Animation export</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="/dashboard/?subscribe=pro" class="btn btn-primary btn-block"><%= t.pricing.subscribe %></a>
+      </div>
+    </div>
+
+    <!-- Single Purchase -->
+    <div class="single-purchase">
+      <h3><%= t.pricing.singlePurchase %></h3>
+      <p>Buy individual Pro mockups starting at $2.99 each. One-time payment, lifetime access.</p>
+    </div>
+  </div>
+</section>

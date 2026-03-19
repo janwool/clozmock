@@ -1,0 +1,53 @@
+<!-- Login Modal -->
+<div id="login-modal" class="modal-overlay">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeLoginModal()">&times;</button>
+    <h2 id="modal-title"><%= t.auth.welcomeBack %></h2>
+
+    <button class="modal-google-btn" id="btn-google-auth">
+      <svg width="18" height="18" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59a14.5 14.5 0 0 1 0-9.18l-7.98-6.19a24.01 24.01 0 0 0 0 21.56l7.98-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+      <span><%= t.auth.continueWithGoogle %></span>
+    </button>
+
+    <div class="modal-divider"><span><%= t.auth.or %></span></div>
+
+    <form id="login-form">
+      <div class="modal-field" id="name-field" style="display:none">
+        <label><%= t.auth.name %></label>
+        <input type="text" id="auth-name" placeholder="<%= t.auth.namePlaceholder %>" />
+      </div>
+      <div class="modal-field">
+        <label><%= t.auth.email %></label>
+        <input type="email" id="auth-email" placeholder="<%= t.auth.emailPlaceholder %>" required />
+      </div>
+      <div class="modal-field">
+        <label><%= t.auth.password %></label>
+        <input type="password" id="auth-password" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" required minlength="8" />
+      </div>
+
+      <p id="auth-error" class="modal-error" style="display:none"></p>
+
+      <button type="submit" class="modal-submit-btn" id="auth-submit-btn"><%= t.auth.signIn %></button>
+    </form>
+
+    <p class="modal-toggle">
+      <span id="toggle-label"><%= t.auth.noAccount %></span>
+      <a href="#" id="toggle-mode"><%= t.auth.signUp %></a>
+    </p>
+  </div>
+</div>
+
+<script>
+window.__AUTH_TEXT__ = <%- JSON.stringify({
+  welcomeBack: t.auth.welcomeBack,
+  createAccount: t.auth.createAccount,
+  signIn: t.auth.signIn,
+  signUp: t.auth.signUp,
+  noAccount: t.auth.noAccount,
+  hasAccount: t.auth.hasAccount,
+  authFailed: t.auth.authFailed,
+  googleFailed: t.auth.googleFailed,
+  loading: t.auth.loading
+}) %>;
+</script>
+<script src="/assets/auth-modal.js" defer></script>
